@@ -49,7 +49,7 @@
   --radius: 4px;                 /* tight, engineered — not pill-soft */
   --shadow: 0 1px 0 rgba(15, 39, 46, 0.06), 0 8px 28px rgba(15, 39, 46, 0.06);
   --transition: 200ms ease;
-  --header-height: 72px;
+  --header-height: 108px;
 }
 
 /* --------------------------------------------------------------------------
@@ -148,7 +148,7 @@ img { max-width: 100%; height: auto; display: block; }
    -------------------------------------------------------------------------- */
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 1.5rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -252,11 +252,20 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .site-header--scrolled { box-shadow: 0 1px 0 var(--color-line), var(--shadow); }
 
-/* Wordmark — inline SVG; adapts to header/footer via currentColor */
+/* Wordmark — inline SVG; used in the footer, adapts via currentColor */
 .wordmark-svg {
   display: block;
   height: 26px;
   width: auto;
+}
+
+/* Full-colour logo lockup — header, on the light Bone background.
+   multiply blends the logo's white background into Bone so no white box shows. */
+.wordmark-logo {
+  display: block;
+  height: 84px;
+  width: auto;
+  mix-blend-mode: multiply;
 }
 
 .site-header__inner {
@@ -290,7 +299,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .primary-nav__links a {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 1rem;
   letter-spacing: 0.04em;
   color: var(--color-steel);
   padding-block: var(--space-2xs);
@@ -354,22 +363,30 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: -1;
   background:
     linear-gradient(90deg,
-      rgba(15, 39, 46, 0.95) 0%,
-      rgba(15, 39, 46, 0.88) 42%,
-      rgba(15, 39, 46, 0.58) 72%,
-      rgba(15, 39, 46, 0.36) 100%),
+      rgba(15, 39, 46, 0.93) 0%,
+      rgba(15, 39, 46, 0.86) 45%,
+      rgba(15, 39, 46, 0.74) 75%,
+      rgba(15, 39, 46, 0.64) 100%),
     linear-gradient(0deg,
-      rgba(15, 39, 46, 0.55) 0%,
-      rgba(15, 39, 46, 0) 48%);
+      rgba(15, 39, 46, 0.5) 0%,
+      rgba(15, 39, 46, 0) 55%);
 }
 
 .hero__content {
-  max-width: 640px;
+  max-width: none;
   padding-block: var(--space-2xl);
 }
-.hero__content .eyebrow { color: var(--color-bone); }
-.hero h1 { color: #fff; margin-bottom: var(--space-lg); }
-.hero .lead { color: var(--color-bone); }
+.hero__content .eyebrow {
+  color: var(--color-bone);
+  font-size: 1.5rem;
+  letter-spacing: 0.16em;
+}
+.hero h1 {
+  color: #fff;
+  margin-bottom: var(--space-lg);
+  font-size: clamp(2.75rem, 7vw, 5rem);
+}
+.hero .lead { color: var(--color-bone); max-width: none; }
 
 .hero__actions {
   display: flex;
@@ -507,9 +524,14 @@ a.card:hover { text-decoration: none; }
   font-size: clamp(1.3rem, 2.4vw, 1.7rem);
   line-height: 1.42;
   color: var(--color-text);
-  max-width: 34ch;
+  max-width: none;
   margin: 0;
 }
+
+/* Text blocks that run the full container width (About: intro + note) */
+.section--wide .lead,
+.section--wide p,
+.section--wide .note { max-width: none; }
 
 /* --------------------------------------------------------------------------
    Founder's note — first-person story, amber left rule
